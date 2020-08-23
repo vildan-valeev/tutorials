@@ -303,17 +303,151 @@ from math import sqrt, exp, sin, log, cos, acos, degrees
 """
 from math import degrees
 
-h = int(input())
-m = int(input())
-s = int(input())
+# h = int(input())
+# m = int(input())
+# s = int(input())
+#
+# # if 0 <= h <= 11 and 0 <= (m or s) <= 59 :
+# if 0 <= h <= 11 and 0 <= m <= 59 and 0 <= s <= 59:
+#     # total_s = h * 3600 + m * 60 + s
+#     # one_sec_gr = 360 / (12 * 60 * 60)
+#     total = (h * 3600 + m * 60 + s) / 120
+#
+#     print(round(total, 2))
+# else:
+#     print("error")
 
 
-# if 0 <= h <= 11 and 0 <= (m or s) <= 59 :
-if 0 <= h <= 11 and 0 <= m <= 59 and 0 <= s <= 59:
-    # total_s = h * 3600 + m * 60 + s
-    # one_sec_gr = 360 / (12 * 60 * 60)
-    total = (h * 3600 + m * 60 + s) / 120
+# def f_x(x):
+#     y = 1 / (x + 1) + x / (x - 3)
+#     return y
+#
+#
+# t = float(input("t = "))
+# y = f_x(t)
+#
+# print("f(", t, ") = ", y)
 
-    print(round(total, 2))
-else:
-    print("error")
+
+"""
+Вы положили некоторую сумму x в банк на n месяцев под k% годовых с капитализацией процентов. Расчет итоговой суммы осуществляется по формуле:
+
+s=x\cdot (1+{k\over 12\cdot100})^n
+s=x⋅(1+ 
+12⋅100
+k
+​	
+ ) 
+n
+ 
+Посчитать прибыль от вложения (разницу между конечной и исходной суммой), результат округлить до целого.
+
+Реализовать задачу на основе предложенного шаблона. Проверку входных данных не делать.
+
+Входные данные:
+
+сумма вклада x руб;
+процент k;
+количество месяцев n.
+Выходные данные:
+
+прибыль от вложения, округленная до целого числа.
+Пояснение:
+
+Для округления выходных данных использовать round()
+"""
+# x = float(input())
+# k = float(input())
+# n = int(input())
+#
+#
+# # deposit - сумма вклада, interest_rate -процентная ставка,
+# # amount_months - количество месяцев
+# def compute_income(deposit, interest_rate, amount_months):
+#     inc = deposit * (1 + (interest_rate / (12 * 100))) ** amount_months
+#     return inc
+#
+#
+# # вычислить прибыль с помощью функции
+#
+# s = compute_income(x, k, n) - x
+#
+# # вывести результат
+# print(round(s))
+
+
+"""Подобрать такое ЦЕЛОЕ значение исходного вклада, чтобы за 5.0 месяцев получить прибыль 1969.0 рублей, если годовая 
+процентная ставка составляет 7.0%. """
+
+# def compute_income(deposit, interest_rate, amount_months):
+#     z = deposit * (1 + (interest_rate / (12 * 100))) ** amount_months
+#     return z
+#
+#
+# k = float(input())   # занести процент вклада
+# n = float(input())  # занести количество месяцев
+# s = float(input())  # занести прибыль
+#
+# a = []
+#
+# for x in range(1000, 300000):
+#     # вычислить прибыль для вклада x с помощью функции  compute_income(x, ..., ...)
+#     income = compute_income(x, k, n) - x
+#
+#     if round(income) == s:
+#         a.append(x)
+#
+# print(min(a))
+
+
+"""
+Для вычисления и прогноза численности населения Земли С. П. Капица предложил следующую формулу:
+
+N(t)={C\over \tau}\cdot {arcctg({{T_1-t}\over \tau}})
+N(t)= 
+τ
+C
+​	
+ ⋅arcctg( 
+τ
+T 
+1
+​	
+ −t
+​	
+ )
+где:
+ t - год, для которого вычисляется численность населения;
+С - 172 миллиарда человек·лет;
+T1 -  2000 год;
+\tauτ - 45 лет.
+
+Вычислить численность населения в заданные годы.
+
+Реализовать задачу на основе шаблона.
+
+Входные данные:
+
+строка, состоящая из n целых чисел, разделенных пробелами, каждое число - год.   
+Выходные данные:
+
+n строк, в каждой из которых выведен год и численность населения в этом году, для вывода использовать формат:
+         "%5d - %6.3f миллиард(ов)"
+"""
+
+from math import pi, atan
+
+
+def peoples(t):
+    x = (2000 - t) / 45
+    arcctg = pi / 2 - atan(x)
+    N = 172 / 45 * arcctg
+    return N
+
+
+n = input('n = ')
+years = n.split()
+
+for year in years:
+    res = peoples(int(year))
+    print("%5d - %6.3f миллиард(ов)" % (int(year), res))
