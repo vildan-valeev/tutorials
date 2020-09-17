@@ -47,3 +47,5 @@ telephone = "+79565662355",
 r = requests.post('http://127.0.0.1:8000/api/tours/create/', data=data)
 resp = r.status_code
 print(resp)
+
+
