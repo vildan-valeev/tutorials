@@ -1,5 +1,5 @@
 import re
-
+import random
 # text = '123'\
 #        '+79261234567'\
 #        '+89261234567'\
@@ -23,12 +23,7 @@ import re
 # print(search)
 # print(text.split(" ", 2)[-1])
 # print(text.split(" ", 2)[1])
-
-
-
-
-
-
+import time
 
 """
 (?<!\d) - сразу слева не должно быть цифры
@@ -40,7 +35,7 @@ import re
 (?!\d) - сразу справа не должно быть цифры
 
 """
-pattern = r'(?<!\d)(?:0[1-9]|[12][0-9]|3[01]).(?:0[1-9]|1[0-2]).(?:20[02][0-9]) (?:0[1-9]|1[0-9]|2[0-4]):(?:0[1-9]|[12345][0-9])(?!\d)'
+pattern = r'(?<!\d)(?:0[1-9]|[12][0-9]|3[01]).(?:0[1-9]|1[0-2]).(?:20[02][0-9]) (?:0[0-9]|1[0-9]|2[0-4]):(?:0[0-9]|[012345][0-9])(?!\d)'
 
 
 def test(s):
@@ -51,13 +46,15 @@ def test(s):
         print(s, 'no')
 
 
-test('31.12.2020 23:59')  # yes
-test('31.12.2020 33:59')  # no
-test('45.12.2020 20:59')  # no
-test('25.34.2020 21:59')  # no
-test('25.34.2020 22:59')  # no
-test('25.10.3050 22:59')  # no
-test('25.10.3050 22:78')  # no
-test('2.10.2020 15:01')  # no
-test('02.5.2019 15:00')  # no
-test('02.55.1515 15:00')  # no
+def result():
+    dd = "{:02d}".format(random.randint(1, 31))
+    mm = "{:02d}".format(random.randint(1, 12))
+    yy = random.randint(2020, 2029)
+    h = "{:02d}".format(random.randint(0, 23))
+    m = "{:02d}".format(random.randint(0, 59))
+    return f'{dd}.{mm}.{yy} {h}:{m}'
+
+
+while True:
+    time.sleep(0.5)
+    test(result())
