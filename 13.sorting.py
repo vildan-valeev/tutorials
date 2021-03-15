@@ -1,4 +1,4 @@
-def insert_sort():
+def insert_sort(A):
     """сортировка списка А вставками"""
     N = len(A)
     for top in range(1, N):
@@ -8,7 +8,7 @@ def insert_sort():
             k -= 1
 
 
-def choise_sort():
+def choise_sort(A):
     """сортировка списка А выбором"""
     N = len(A)
     for pos in range(0, N-1):
@@ -17,8 +17,8 @@ def choise_sort():
                 A[k], A[pos] = A[pos], A[k]
 
 
-def bubble_sort():
-    """сортировка списка А выбором"""
+def bubble_sort(A):
+    """сортировка списка А бабочка"""
     N = len(A)
     for bypass in range(1, N):
         for k in range(0, N-bypass):
