@@ -1,16 +1,16 @@
 # python -i 8.inheritance.py
 
+# Перегрузка методов
+class Person:
+    def hello(self):
+        print('I am Person')
 
-# class Person:
-#     def hello(self):
-#         print('I am Person')
-#
-#
-# class Student(Person):
-#     def hello(self):
-#         print('I am Student')
-#
-# s = Student()
+
+class Student(Person):
+    def hello(self):
+        print('I am Student')
+
+s = Student()
 
 
 class Person:
@@ -25,4 +25,9 @@ class Student(Person):
     pass
 
 
-s = Student('Ivan')
+# s = Student('Ivan')
+
+
+
+
+

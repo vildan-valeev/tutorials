@@ -43,6 +43,7 @@ class Person:
 
 class Student(FoodMixin, Person):
     food = 'Pizza'
+
     def hello(self):
         print('I am Student')
 
