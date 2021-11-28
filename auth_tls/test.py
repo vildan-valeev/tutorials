@@ -6,7 +6,6 @@ from urllib.parse import urlencode
 from urllib.request import urlopen, Request, URLopener, HTTPSHandler
 import ssl
 
-
 cert = 'client03test.crt'
 key = 'client03test.key'
 url = "https://slb.medv.ru/api/v2/"
@@ -18,6 +17,7 @@ def main():
     """requests lib"""
     response = requests.post(url, cert=(cert, key), verify=True, headers=headers, data=json.dumps(values))
     print(response.json())
+
 
 def main2():
     """urllib"""
@@ -34,20 +34,18 @@ def main2():
 
 
 def auth(func):
-
     def wrapper(*args, **kwargs):
         # if response.getcode() == 200:
         func()
         # else:
         #     return 'ошибка соединения'
+
     return wrapper
 
 
 @auth
 def action():
     print('ok')
-
-
 
 
 if __name__ == "__main__":
