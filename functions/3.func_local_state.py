@@ -1,14 +1,16 @@
 """функция make_adder - фабрика для функций суммирования,
 
-захватывает локальное состояние
+захватывает локальное состояние - замыкание
 """
 
 
 def make_adder(n):
     def add(x):
         return x + n
-
     return add
+# def make_adder(n):
+#     return lambda x: x + n
+
 
 
 plus_3 = make_adder(3)
