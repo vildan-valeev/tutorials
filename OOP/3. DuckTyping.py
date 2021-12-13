@@ -5,6 +5,7 @@ class Bird:
     def fly(self):
         print('fly whith wings')
 
+
 class AirPlane:
     def fly(self):
         print('fly with fuel')
