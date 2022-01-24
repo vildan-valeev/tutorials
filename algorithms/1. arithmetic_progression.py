@@ -3,6 +3,10 @@
 По правильному ответу их можно отличить от жителей других племён.
 Вот этот вопрос: назовите сумму целых чисел от 1 (включительно) до N (включительно).
 """
+import datetime
+import pathlib
+
+from typing import List, Optional, Union, Tuple
 
 
 def arithmetic_progression(b, a=1):
@@ -11,7 +15,8 @@ def arithmetic_progression(b, a=1):
     return sum(range(a, b + 1))
 
 
-print(arithmetic_progression(1))
-print(arithmetic_progression(3))
-print(arithmetic_progression(-3))
-print(arithmetic_progression(5))
+#
+# print(arithmetic_progression(1))
+# print(arithmetic_progression(3))
+# print(arithmetic_progression(-3))
+# print(arithmetic_progression(5))
