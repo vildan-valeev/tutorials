@@ -1,4 +1,5 @@
 """Строка в обратном порядке"""
+from elm_soft import Account
 
 
 def solution(string):
@@ -11,3 +12,4 @@ def solution(string):
 
 
 print(solution('world'))
+Account()
