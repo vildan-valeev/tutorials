@@ -1,4 +1,4 @@
-from collection_s import namedtuple
+from collections import namedtuple
 
 Player = namedtuple('Player', 'name age rating')
 
