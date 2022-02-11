@@ -106,13 +106,6 @@ def find_athlets(*args: List[str]) -> set:
 # print(find_athlets(know_english, sportsmen, more_than_20_years))
 
 
-# import collections
-# c = collections.Counter()
-# for word in ['spam', 'egg', 'spam', 'counter', 'counter', 'counter']:
-#     c[word] += 1
-# print(c)
-
-
 students_avg_scores = {'Max': 4.964,
                        'Eric': 4.962,
                        'Peter': 4.923,
@@ -122,7 +115,8 @@ students_avg_scores = {'Max': 4.964,
                        'Felix': 4.937,
                        'Vasya': 4.911,
                        'Don': 4.936,
-                       'Zoi': 4.937}
+                       'Zoi': 4.937
+                       }
 
 
 def make_report_about_top3(students: dict) -> pathlib.Path.name:
@@ -138,7 +132,7 @@ def make_report_about_top3(students: dict) -> pathlib.Path.name:
         for key, value in dict(sorted(students.items(), key=lambda item: item[1], reverse=True)[:3]).items():
             writer.writerow([key, value])
 
-    return Path(file_name).absolute().name
+    return Path(file_name).absolute()
 
 
 contacts = {
