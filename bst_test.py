@@ -95,21 +95,12 @@ sportsmen = ["Don", "Peter", "Eric", "Jimmy", "Mark"]
 more_than_20_years = ["Peter", "Julie", "Jimmy", "Mark", "Max"]
 
 
-# import collections
-# print(collections.Counter(l1))
-
-def find_athlets(*args: List[str]) -> List[str]:
+def find_athlets(*args: List[str]) -> set:
     """ Определяем список совпадений.
         Количество совпадений имен в счетчике должна быть равна(или больше) количеству аргументов функции(списков)
         это будет значить что имя есть во всех списках.
     """
-    from collections import Counter  # move to top
-    counter = Counter()  # инициализируем счетчик
-    for i in args:  # принимаем любое количество списков для проверки совпадений
-        for name in list(i):
-            counter[name] += 1  # кидаем все в счетчик
-    # приводим к list of set, и сравниваем количество c args (количество списков)
-    return [i for i, _ in counter.most_common() if _ >= len(args)]
+    return set.intersection(*[set(i) for i in args])
 
 
 # print(find_athlets(know_english, sportsmen, more_than_20_years))
@@ -149,6 +140,7 @@ def make_report_about_top3(students: dict) -> pathlib.Path.name:
 
     return Path(file_name).absolute().name
 
+
 contacts = {
     'name': 'Вильдан',
     'phone': 89279388882,
@@ -157,4 +149,5 @@ contacts = {
 
 }
 
-make_report_about_top3(students_avg_scores)
+# make_report_about_top3(students_avg_scores)
+
