@@ -35,11 +35,12 @@ import time
 (?!\d) - сразу справа не должно быть цифры
 
 """
-pattern = r'(?<!\d)(?:0[1-9]|[12][0-9]|3[01]).(?:0[1-9]|1[0-2]).(?:20[02][0-9]) (?:0[0-9]|1[0-9]|2[0-4]):(?:0[0-9]|[012345][0-9])(?!\d)'
+# TODO: проверка на другие символы вместо точек -> ( \. )
+pattern = r'(?<!\d)(?:0[1-9]|[12][0-9]|3[01])\.(?:0[1-9]|1[0-2])\.(?:20[02][0-9]) (?:0[0-9]|1[0-9]|2[0-4])\:(?:0[0-9]|[012345][0-9])(?!\d)'
 
 
-def test(s):
-    result = re.fullmatch(pattern=pattern, string=s)
+def test(s, p):
+    result = re.fullmatch(pattern=p, string=s)
     if result:
         print(s, 'yes')
     else:
@@ -55,6 +56,10 @@ def result():
     return f'{dd}.{mm}.{yy} {h}:{m}'
 
 
-while True:
-    time.sleep(0.5)
-    test(result())
+
+# while True:
+#     time.sleep(0.5)
+#     test(result(), pattern)
+
+
+
