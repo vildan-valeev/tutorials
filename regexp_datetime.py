@@ -57,9 +57,9 @@ def result():
 
 
 
-# while True:
-#     time.sleep(0.5)
-#     test(result(), pattern)
+while True:
+    time.sleep(0.5)
+    test(result(), pattern)
 
 
 
