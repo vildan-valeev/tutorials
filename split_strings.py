@@ -20,7 +20,7 @@ def solution(s:str) -> List[str]:
     return [s[i:i + n] if len(s[i:i + n]) == n else s[i:i + n] + '_' for i in range(0, len(s), n)]
 
 
-class TestAccount(unittest.TestCase):
+class TestSolution(unittest.TestCase):
 
     def setUp(self) -> None:
         self.tests = (
