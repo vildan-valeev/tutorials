@@ -1,3 +1,4 @@
+import time
 from typing import List
 
 import unittest
@@ -24,14 +25,27 @@ Attention: If the number has leading zeros the amount of digits should be consid
 """
 
 
-# def increment_string(strng):
-# """без регулярки"""
-#     head = strng.rstrip('0123456789')
-#     tail = strng[len(head):]
-#     if tail == "": return strng+"1"
-#     return head + str(int(tail) + 1).zfill(len(tail))
+def benchmark(func):
+    def wrapper(*args, **kwargs):
+        t1 = time.time()
+        func(*args, **kwargs)
+        t2 = time.time()
+        t = (t2-t1) * 1000
+        print(f'{t:0.5f}ms')
+
+    return wrapper
 
 
+@benchmark
+def increment_string1(strng):
+    """без регулярки"""
+    head = strng.rstrip('0123456789')
+    tail = strng[len(head):]
+    if tail == "": return strng + "1"
+    return head + str(int(tail) + 1).zfill(len(tail))
+
+
+@benchmark
 def increment_string(strng):
     """C регуляркой"""
     if strng.isalpha():
@@ -39,25 +53,30 @@ def increment_string(strng):
     elif strng.isdigit():
         strng = str(int(strng) + 1).zfill(len(strng))
     elif strng:
-        r = re.findall('^(.+\D)(\d+)$', strng)
+        r = re.findall(r'^(.+\D)(\d+)$', strng)
         word = r[0][0]
         num = r[0][1]
         strng = f'{word}{str(int(num) + 1).zfill(len(num))}'
     return '1' if not strng else strng
 
 
-class TestSolution(unittest.TestCase):
+print('без регулярок')
+increment_string1("tM653TD<99.ciRKa2784864077339")
+print('c регулярками')
+increment_string("tM653TD<99.ciRKa2784864077339")
 
-    def test_increment_string(self):
-        """"""
-        self.assertEqual(increment_string("foo"), "foo1")
-        self.assertEqual(increment_string("foobar001"), "foobar002")
-        self.assertEqual(increment_string("foobar1"), "foobar2")
-        self.assertEqual(increment_string("foobar00"), "foobar01")
-        self.assertEqual(increment_string("foobar99"), "foobar100")
-        self.assertEqual(increment_string("foobar099"), "foobar100")
-        self.assertEqual(increment_string(""), "1")
-        self.assertEqual(increment_string("1"), "2")
-        self.assertEqual(increment_string("tM653TD<99.ciRKa2784864077339"), "tM653TD<99.ciRKa2784864077340")
-        self.assertEqual(increment_string("l|(9fkk_|544997sP2p65106249"), "l|(9fkk_|544997sP2p65106250")
-        self.assertEqual(increment_string("r1"), "r2")
+# class TestSolution(unittest.TestCase):
+#
+#     def test_increment_string(self):
+#         """"""
+#         self.assertEqual(increment_string("foo"), "foo1")
+#         self.assertEqual(increment_string("foobar001"), "foobar002")
+#         self.assertEqual(increment_string("foobar1"), "foobar2")
+#         self.assertEqual(increment_string("foobar00"), "foobar01")
+#         self.assertEqual(increment_string("foobar99"), "foobar100")
+#         self.assertEqual(increment_string("foobar099"), "foobar100")
+#         self.assertEqual(increment_string(""), "1")
+#         self.assertEqual(increment_string("1"), "2")
+#         self.assertEqual(increment_string("tM653TD<99.ciRKa2784864077339"), "tM653TD<99.ciRKa2784864077340")
+#         self.assertEqual(increment_string("l|(9fkk_|544997sP2p65106249"), "l|(9fkk_|544997sP2p65106250")
+#         self.assertEqual(increment_string("r1"), "r2")
