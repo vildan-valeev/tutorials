@@ -13,6 +13,7 @@ from typing import List
 class Record:
     #  docstrings
     """ """
+
     def __init__(self, amount: int, comment: str, date: str = ''):
         self.amount = float(amount)
         self.date = dt.now().date() if not date \
@@ -23,6 +24,7 @@ class Record:
 class Calculator:
     #  docstrings
     """ """
+
     def __init__(self, limit: float):
         self.limit = limit
         # self.records = []
@@ -39,7 +41,8 @@ class Calculator:
         today_stats = 0
         # for Record in self.records:
         # для переменной цикла нежелательно использовать название класса
-        # лучше указать в typing
+        # лучше указать в typing,
+        # если необходимо видеть атрибуты и методы в ide
         for record in self.records:
             if record.date == dt.now().date():
                 today_stats += record.amount
@@ -118,20 +121,13 @@ class CashCalculator(Calculator):
         #     currency_type = 'руб'
         # Переменные со словом type не использовать. Это не тип, это строка
         cash_remained, suffix = self.__ge_currency(currency)
+        answer = 'Денег нет, держись '
+        # "грядка" elif-ов не всегда нужна, если условия небольшие достаточно
+        # тернарным оператором
         if cash_remained > 0:
-            return f'На сегодня осталось {cash_remained:.02f)} {suffix}'
-            # return (
-            #     f'На сегодня осталось {round(cash_remained, 2)} '
-            #     # форматирование float в f строках можно задавать так
-            #     # f'На сегодня осталось {cash_remained:.2f)} {currency_type}'
-            # )
-        elif cash_remained == 0:
-            return 'Денег нет, держись'
-        elif cash_remained < 0:
-            # в python3 более идеальным вариантом считается без использования
-            # метода format
-            return 'Денег нет, держись: ' \
-                   f'твой долг - {-cash_remained:.02f} {suffix}'
+            return f'На сегодня осталось {round(cash_remained, 2)} {suffix}'
+        return (answer if cash_remained == 0
+                else answer + f'твой долг {cash_remained:.02f} {suffix}')
 
     def get_week_stats(self):
         #  docstrings
