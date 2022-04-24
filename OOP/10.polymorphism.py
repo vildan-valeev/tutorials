@@ -12,5 +12,21 @@ class Room:
 
 r1 = Room(3, 5)
 r2 = Room(4, 7)
-print(r1.area, r2.area)
-print(r1 + r2)
+# print(r1.area, r2.area)
+# print(r1 + r2)
+
+
+# polymorphism - функция в зависимости от типа данных меняет свое поведение
+l = [1,2,3]
+d ={
+    "a": 1,
+    "b": 2,
+
+}
+s = "123"
+print(len(l))
+print(len(d))
+print(len(s))
+
+print(1 + 1)
+print("1" + "1")
