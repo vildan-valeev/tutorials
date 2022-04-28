@@ -22,6 +22,7 @@ class ICommand(ABC):
     """Интерфейсный класс для выполняемых операций"""
     @abstractmethod
     def execute(self) -> None:
+
         ...
 
 
