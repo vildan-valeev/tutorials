@@ -1,6 +1,5 @@
 from collections import deque
 
-
 graph = {
     'you': ['alice', 'bob', 'claire'],
     'bob': ['anuj', 'peggy'],
@@ -16,7 +15,10 @@ graph = {
 def person_is_seller(name):
     return name[-1] == 'm'
 
+
 print(graph)
+
+
 def search(name):
     search_queue = deque()
     search_queue += graph[name]
