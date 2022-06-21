@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 import time
+import pandas as pd
+import openpyxl
 
-OUT_FILE = "done.csv"
-IN_FILE = "SMM.txt"
+OUT_FILE = "done.xlsx"
+IN_FILE = "SMM1.txt"
+
+
+
+
 
 def read_txt():
     """Read txt file - all lines"""
@@ -26,21 +32,29 @@ def read_txt():
         return data_list
 
 
+
 def save_to_csv(data: dict):
     """Save all data to csv"""
-    rows = [f"{k};{v}\n" for k, v in data.items()]
-    with open(OUT_FILE, "w") as f:
-        f.writelines(rows)
-
+    t0 = time.time()
+    df = pd.DataFrame([[k, v] for k, v in data.items()],
+                      columns=['Tag', 'count'])
+    td1 = time.time() - t0
+    print("создание датафрейма всего - ", td1)
+    with pd.ExcelWriter(OUT_FILE) as writer:
+        df.to_excel(writer, sheet_name='Bot_parsed')
+    tdelta = time.time() - t0
+    print("запись в файл всего - ", tdelta)
 
 if __name__ == '__main__':
     t0 = time.time()
 
     rows = read_txt()
+    td1 = time.time() - t0
+    print("функция чтение", td1)  # 1,8 с
     save_to_csv(rows)
 
     tdelta = time.time() - t0
-    print(tdelta)  #  1,8 с
+    print("окончание", tdelta)  # 1,8 с
 
 # ------------------VERSION BY CHUNKS----------------------------------------------
 # import time
